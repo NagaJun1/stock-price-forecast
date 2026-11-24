@@ -3,16 +3,14 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ES2022"],
-    "types": ["node"],
+    "lib": ["ES2022", "DOM"],
     "rootDir": "src",
-    "outDir": "dist",
+    "outDir": "site/js",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": false,
     "sourceMap": false
   },
-  "include": ["src"],
-  "exclude": ["src/browser.ts"]
+  "include": ["src"]
 }

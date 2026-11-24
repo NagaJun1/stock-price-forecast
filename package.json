@@ -1,23 +1,13 @@
 {
   "name": "stock-price-forecast",
   "version": "0.1.0",
-  "description": "日本株の月次長期予想コンソールアプリ (TypeScript)",
+  "description": "日本株の月次長期予想Webアプリ (TypeScript)",
   "type": "module",
-  "engines": {
-    "node": ">=26"
-  },
   "scripts": {
     "build": "tsc",
-    "build:web": "tsc -p tsconfig.web.json",
-    "serve": "npx -y serve site",
-    "start": "node dist/index.js",
-    "dev": "npm run build --silent && node dist/index.js"
-  },
-  "dependencies": {
-    "yahoo-finance2": "^4.0.6"
+    "serve": "npx -y serve site"
   },
   "devDependencies": {
-    "@types/node": "^26.6.6",
     "typescript": "^7.0.2"
   }
 }
