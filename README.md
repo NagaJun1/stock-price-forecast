@@ -1,6 +1,6 @@
 # 日本株 株価予想アプリ
 
-ブラウザで動く日本株 月次長期予想アプリ。GitHub Pages で公開できる。
+localhost で動く日本株 月次長期予想Webアプリ。公開プロキシを使わず、同梱サーバ経由で取得する。
 
 ## 目的
 
@@ -15,16 +15,15 @@
 
 ## システム構成
 
-- 形態: フロントエンドのみの静的Webアプリ（フレームワーク不使用、ビルドは `tsc` のみ）
-- 言語: TypeScript（`src/browser.ts` がエントリ、`site/` 以下が公開物。`site/js/` はビルド生成物のため git 管理外で、CI で生成する）
+- Runtime: Node.js 26以上（同梱サーバ用）
+- 形態: 静的ページ＋データ転送だけの同梱サーバ（フレームワーク・外部依存なし）
+- 言語: TypeScript（`src/browser.ts` が UI、`src/server.ts` がサーバ、`site/` 以下が公開物。`site/js/` はビルド生成物のため git 管理外）
 - データ保存: なし（DB不使用）
 - パッケージ管理: npm
-- 計算ロジック（`forecast.ts`・`arima.ts`・`factor.ts`）は依存なしの純粋関数
 
 ## データソース
 
-- 採用: Yahoo Finance chart API（v8）をブラウザの `fetch` で直接取得
-- Yahoo はブラウザ直接呼び出しを CORS で遮断するため、公開 CORS プロキシ経由で取得する（allorigins → codetabs → corsproxy.io の順に再試行）
+- 採用: Yahoo Finance chart API（v8）。ブラウザからは同一生成元の `/api/chart`、サーバが Yahoo に転送する（CORS 問題なし、公開プロキシ不要）
 - 除外: J-Quants API（制約が大きく使いづらいため）
 - APIキー不要
 
@@ -40,7 +39,7 @@
 - データソースのレート制限対策（取得失敗時はエラーを明示して終了）
 - エラー時は取得失敗を明示する
 
-## セットアップ（ローカル実行）
+## セットアップ
 
 ```bash
 npm install
@@ -48,13 +47,7 @@ npm run build
 npm run serve
 ```
 
-`http://localhost:3000` をブラウザで開く。証券コード（例: 7203）と予測月数を入力して「予測実行」を押す。
-
-## GitHub Pages への公開
-
-1. リポジトリの Settings → Pages → Source で「GitHub Actions」を選択する（「Deploy from a branch」のままだと旧い表示になる）
-2. `main`（または `master`）に push すると `.github/workflows/deploy-pages.yml` がビルドし、`site/` の中身をサイトルートとして公開する（`site/index.html` → 公開 URL 直下、`site/js/browser.js` → 公開 URL の `/js/browser.js`）
-3. `https://<ユーザ名>.github.io/stock-price-forecast/` を開く（末尾に `/site/` は付けない）。銘柄入力から予測を実行できる
+`http://localhost:3000` をブラウザで開く。証券コード（例: 7203）と予測月数を入力して「予測実行」を押す。ポート変更は `PORT=8080 npm run serve`。
 
 
 ## アプリで出力される内容

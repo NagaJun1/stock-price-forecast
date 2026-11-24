@@ -90,7 +90,7 @@ async function run(): Promise<void> {
       `銘柄: ${ticker}`,
       `学習データ: ${toMonthLabel(first.date)}〜${toMonthLabel(arima.lastDate)} 月足 ${arima.pointsUsed}件`,
       `直近終値: ${Math.round(arima.lastClose).toLocaleString()} 円`,
-      `前提: 過去${HISTORY_YEARS}年の傾向が続くと仮定。投資助言ではない。`,
+      `前提: 過去${HISTORY_YEARS}年の傾向が続くと仮定。`,
     ];
     const ul = document.createElement("ul");
     for (const text of items) {

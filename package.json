@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "description": "日本株の月次長期予想Webアプリ (TypeScript)",
   "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
     "build": "tsc",
-    "serve": "npx -y serve site"
+    "serve": "node site/js/server.js"
   },
   "devDependencies": {
+    "@types/node": "^26.6.6",
     "typescript": "^7.0.2"
   }
 }
