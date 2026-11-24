@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日本株 株価予想</title>
+<style>
+body { font-family: sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+table { border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #999; padding: 0.3rem 0.8rem; text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+#status { color: #a00; min-height: 1.5em; }
+.controls { display: flex; gap: 0.5rem; align-items: end; flex-wrap: wrap; }
+label { display: flex; flex-direction: column; font-size: 0.9rem; }
+button { padding: 0.4rem 1.2rem; }
+.note { font-size: 0.85rem; color: #555; }
+</style>
+</head>
+<body>
+<h1>日本株 株価予想</h1>
+<p class="note">月足の長期予想を参考情報として表示します。投資助言ではありません。</p>
+<div class="controls">
+<label>証券コード
+<input id="ticker" value="7203" inputmode="numeric">
+</label>
+<label>予測月数 (1-24)
+<input id="months" type="number" value="6" min="1" max="24">
+</label>
+<button id="run" type="button">予測実行</button>
+</div>
+<p id="status" role="status"></p>
+<div id="summary"></div>
+<div id="actuals"></div>
+<div id="methods"></div>
+<div id="forecast"></div>
+<script type="module" src="./js/browser.js"></script>
+</body>
+</html>
